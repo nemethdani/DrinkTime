@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="name_preference"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="The user's name"
+        android:title="Name" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:inputType="numberDecimal"
+
+        android:key="age_preference"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Age of the user"
+        android:title="Age" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="sex_preference"
+        android:summary="The sex of the user"
+        android:summaryOff="Male"
+        android:summaryOn="Female"
+        android:switchTextOff="M"
+        android:switchTextOn="F"
+        android:title="Sex" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="weight_preference"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Weight of the user in kg-s"
+        android:title="Weight (kg)"
+        android:inputType="numberDecimal"/>
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/sport_intensity_entries"
+            android:entryValues="@array/sport_intensity_entries"
+            android:key="sport_list_preference"
+            android:title="Sport intensity" />
+
+
+</PreferenceScreen>

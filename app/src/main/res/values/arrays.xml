@@ -1,0 +1,9 @@
+<resources>
+
+    <string-array name="sport_intensity_entries">
+        <item>Sitting work</item>
+        <item>Light intensity sport</item>
+        <item>Heavy intensity sport</item>
+    </string-array>
+
+</resources>

@@ -22,4 +22,10 @@
         android:name="hu.bme.aut.android.drinktime.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/pref_personal_profile"
+        android:name="hu.bme.aut.android.drinktime.ui.settings.PersonalProfileSettingsFragment"
+        android:label="@string/menu_personal_profile"
+        tools:layout="@layout/fragment_personal_profile_preferences" />
 </navigation>
