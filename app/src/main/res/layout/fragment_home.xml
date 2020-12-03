@@ -6,30 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="drinkname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/tvPlannedDrink"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvName"
-        tools:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.616"
+        tools:layout_height="300dp"
         tools:layout_width="300dp"></androidx.viewpager.widget.ViewPager>
 
     <TextView
         android:id="@+id/tvPlannedDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
         android:text="Planned drink for today: %1$d ml"
         app:layout_constraintBottom_toTopOf="@+id/tvActualDrink"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +35,7 @@
         android:id="@+id/tvActualDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Actual drink today: %1$d ml"
         app:layout_constraintBottom_toTopOf="@+id/tvRemainingDrink"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,10 +45,12 @@
         android:id="@+id/tvRemainingDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yet to drink today: %1$d ml"
+        android:layout_marginBottom="52dp"
 
+        android:text="Yet to drink today: %1$d ml"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
