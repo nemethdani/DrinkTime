@@ -5,6 +5,7 @@ import androidx.preference.PreferenceManager
 import hu.bme.aut.android.drinktime.ui.settings.PersonalProfileSettingsFragment
 import android.content.SharedPreferences
 import hu.bme.aut.android.drinktime.MainActivity
+import java.time.LocalDateTime
 
 object Person {
 
@@ -15,6 +16,8 @@ object Person {
     var sex:Sex= Sex.female
     var sportIntensity= SportIntensity.sitting
 
+    var lastHydrationTime=LocalDateTime.MIN
+    var accumulatedHydration :Int =0
 
 
     fun setupPerson(context: Context?) {
@@ -42,7 +45,10 @@ object Person {
         }
     }
 
-
+    fun hydrate(hydration: Int) {
+        accumulatedHydration+=hydration
+        lastHydrationTime= LocalDateTime.now()
+    }
 
 
     enum class Sex{male, female}
