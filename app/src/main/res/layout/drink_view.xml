@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDrinkName">
+
+    </androidx.appcompat.widget.AppCompatTextView>
+
+
+    <TextView
+        android:id="@+id/tvHydration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hydration: %1$d%" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+
+    </androidx.appcompat.widget.AppCompatImageButton>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volume to drink: %1$d ml" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="80"
+        android:progress="5" />
+</LinearLayout>
