@@ -27,4 +27,8 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="menu_personal_profile">Personal profile</string>
+    <string name="workday_schedule_fragschedule">Workday schedule</string>
+    <string name="earliest_notification_frag_schedule">Earliest notification</string>
+    <string name="latest_notification_frag_schedule">Latest notification</string>
+    <string name="weekend_schedule_frag_schedule">Weekend schedule</string>
 </resources>
