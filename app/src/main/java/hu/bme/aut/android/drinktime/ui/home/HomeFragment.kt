@@ -30,6 +30,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewPager.adapter=DrinkFragmentAdapter(parentFragmentManager)
+        viewPager.adapter=DrinkFragmentAdapter(childFragmentManager)
     }
 }
