@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import hu.bme.aut.android.drinktime.R
 import hu.bme.aut.android.drinktime.model.DrinkType
+import hu.bme.aut.android.drinktime.model.Person
+import kotlinx.android.synthetic.main.fragment_drink.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +35,12 @@ class DrinkFragment(val drinkType: DrinkType) : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_drink, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        ibtnDrink.setOnClickListener { Person.hydrate(seekBar.milliLiter) }
     }
 
 

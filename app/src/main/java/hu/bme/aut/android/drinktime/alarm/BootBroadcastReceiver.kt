@@ -12,7 +12,7 @@ class BootBroadcastReceiver : BroadcastReceiver() {
         if (intent.action == "android.intent.action.BOOT_COMPLETED") {
 
             NotificationHelper.createNotificationChannels(context)
-
+            Scheduler.reset()
             Scheduler.schedule(snoozeMode = false, context)
         }
     }

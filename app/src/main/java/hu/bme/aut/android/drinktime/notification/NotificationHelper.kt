@@ -19,8 +19,7 @@ import kotlin.random.Random
 
 class NotificationHelper {
     companion object{
-        const val AD_ID = "AD_ID"
-        const val ACTION_SHOW_AD = "hu.bme.aut.adbrowser.showad"
+
 
         fun createNotificationChannels(ctx: Context){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -73,6 +72,7 @@ class NotificationHelper {
                     .setAutoCancel(true)
 
             with(NotificationManagerCompat.from(ctx)) {
+                cancelAll()
                 notify(Random.Default.nextInt(10000, 100000), builder.build())
             }
         }

@@ -14,7 +14,7 @@ class DrinkType(
         val types:List<DrinkType> =listOf(
             DrinkType(0, "water", 100, 200),
                 DrinkType(1, "fruit juice", 80, 200),
-                DrinkType(0, "coffee", -30, 50)
+                DrinkType(2, "coffee", -30, 50)
         )
     }
 

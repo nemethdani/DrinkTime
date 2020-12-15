@@ -5,6 +5,7 @@ import androidx.preference.PreferenceManager
 import hu.bme.aut.android.drinktime.ui.settings.PersonalProfileSettingsFragment
 import android.content.SharedPreferences
 import hu.bme.aut.android.drinktime.MainActivity
+import hu.bme.aut.android.drinktime.scheduler.Scheduler
 import java.time.LocalDateTime
 
 object Person {
@@ -46,9 +47,11 @@ object Person {
         }
     }
 
-    fun hydrate(hydration: Int) {
+    fun hydrate(hydration: Int, ctx:Context) {
         accumulatedHydration+=hydration
         lastHydrationTime= LocalDateTime.now()
+        Scheduler.reset()
+        Scheduler.schedule(false,ctx)
     }
 
     fun hasToDrinkToday(): Boolean {

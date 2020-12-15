@@ -29,7 +29,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="100dp"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            android:id="@+id/ibtnDrink">
 
         </androidx.appcompat.widget.AppCompatImageButton>
 
