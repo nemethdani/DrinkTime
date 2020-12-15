@@ -60,6 +60,8 @@ class NotificationHelper {
             val snoozePendingIntent: PendingIntent =
                 PendingIntent.getBroadcast(ctx, 0, snoozeIntent, 0)*/
 
+
+
             val builder =
                 NotificationCompat.Builder(ctx, DrinkTimeNotificationChannel.DRINK_TIME.id)
                     .setSmallIcon(R.mipmap.ic_launcher_round)

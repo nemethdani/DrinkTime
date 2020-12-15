@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import hu.bme.aut.android.drinktime.R
 import hu.bme.aut.android.drinktime.adapter.DrinkFragmentAdapter
+import hu.bme.aut.android.drinktime.notification.NotificationHelper
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -35,5 +36,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewPager.adapter=DrinkFragmentAdapter(childFragmentManager)
+        NotificationHelper.createNotificationChannels(this.requireContext())
     }
 }
