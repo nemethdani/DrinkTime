@@ -14,6 +14,10 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
+    companion object{
+        val FROM_NOTIFICATION="FROM_NOTIFICATION"
+    }
+
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
