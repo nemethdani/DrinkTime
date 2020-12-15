@@ -31,4 +31,7 @@
     <string name="earliest_notification_frag_schedule">Earliest notification</string>
     <string name="latest_notification_frag_schedule">Latest notification</string>
     <string name="weekend_schedule_frag_schedule">Weekend schedule</string>
+    <string name="snooze_time_mins_fragment_schedule">Snooze time (mins)</string>
+    <string name="max_number_of_snoozes_fragment_schedule">Max number of snoozes</string>
+    <string name="wait_time_after_last_snooze_till_next_alarm_fragment_schedule">Wait time after last snooze till next alarm</string>
 </resources>

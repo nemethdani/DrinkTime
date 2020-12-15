@@ -17,6 +17,40 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="@string/snooze_time_mins_fragment_schedule" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etSnoozeTimeMins"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/max_number_of_snoozes_fragment_schedule" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etSnoozeMaxNumber"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/wait_time_after_last_snooze_till_next_alarm_fragment_schedule" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etWaitTillNextAlarm"
+                android:inputType="number" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="@string/workday_schedule_fragschedule" />
 
             <TextView
