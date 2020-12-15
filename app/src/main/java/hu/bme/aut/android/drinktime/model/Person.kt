@@ -17,6 +17,7 @@ object Person {
     var sportIntensity= SportIntensity.sitting
 
     var lastHydrationTime=LocalDateTime.MIN
+    //ml water
     var accumulatedHydration :Int =0
 
 
@@ -48,6 +49,15 @@ object Person {
     fun hydrate(hydration: Int) {
         accumulatedHydration+=hydration
         lastHydrationTime= LocalDateTime.now()
+    }
+
+    fun hasToDrinkToday(): Boolean {
+        return accumulatedHydration < requiredHydration()
+    }
+
+    //ml water
+    private fun requiredHydration(): Int {
+            return 2000
     }
 
 
