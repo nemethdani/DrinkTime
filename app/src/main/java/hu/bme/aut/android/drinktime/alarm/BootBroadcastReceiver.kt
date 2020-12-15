@@ -9,7 +9,7 @@ class BootBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == "android.intent.action.BOOT_COMPLETED") {
-            Scheduler.schedule(0)
+            Scheduler.schedule(snoozeMode = false, context)
         }
     }
 }

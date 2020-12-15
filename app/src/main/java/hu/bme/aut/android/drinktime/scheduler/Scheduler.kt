@@ -24,28 +24,41 @@ object Scheduler {
     var weekendLatestAlarm=LocalTime.of(18,0)
 
     private var usedSnoozes: Int=0
-    val usedSnoozesName="used_snoozes"
+    val snoozeModeName="snooze_mode"
     
 
-    fun schedule(usedSnoozes:Int, ctx:Context) {
-        this.usedSnoozes=usedSnoozes
-        val delay:Long= DelayTillFirstAlarm() //Secs
+    fun schedule(snoozeMode:Boolean, ctx:Context) {
+
+        val nextModeIsSnooze=nextModeIsSnooze()
+        if(nextModeIsSnooze) usedSnoozes++
+        else usedSnoozes=0
+        val delay:Long= DelayTillFirstAlarm(snoozeMode,nextModeIsSnooze) //Secs
         val intent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
-        intent.putExtra(usedSnoozesName, usedSnoozes)
+        intent.putExtra(snoozeModeName, nextModeIsSnooze)
         val pendingIntent=
                 PendingIntent
                     .getBroadcast(ctx, 0, intent, 0)
         AlarmHelper.scheduleAlarm(ctx, delay, pendingIntent)
     }
 
+    private fun nextModeIsSnooze(): Boolean {
+        return usedSnoozes< maxSnoozeNumber
+    }
+
     //Secs
-    private fun DelayTillFirstAlarm(): Long {
-        if(Person.hasToDrinkToday() && canDrinkToday()){
-            return 0;
+    private fun DelayTillFirstAlarm(currentModeIsSnooze:Boolean, nextModeIsSnooze: Boolean): Long {
+        if(nextModeIsSnooze){
+            return snoozeTimeMins*60.toLong()
         }
+        else if(currentModeIsSnooze) return waitTillNextAlarmFromLastSnoozeMins*60.toLong()
         else{
-            return SecsTillTomorrowFirstAlarm()
+            return if(Person.hasToDrinkToday() && canDrinkToday()){
+                0;
+            } else{
+                SecsTillTomorrowFirstAlarm()
+            }
         }
+
     }
 
     private fun SecsTillTomorrowFirstAlarm(): Long {
