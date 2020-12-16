@@ -6,6 +6,7 @@ import android.content.Intent
 import hu.bme.aut.android.drinktime.alarm.AlarmHelper
 import hu.bme.aut.android.drinktime.alarm.DrinkAlarmBroadcastReceiver
 import hu.bme.aut.android.drinktime.model.Person
+import java.lang.Long.min
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -25,9 +26,10 @@ object Scheduler {
 
     private var usedSnoozes: Int=0
     val snoozeModeName="snooze_mode"
-    
 
-    fun schedule(snoozeMode:Boolean, ctx:Context) {
+    lateinit var onScheduledListener: OnScheduledListener
+
+    /*fun schedule(snoozeMode:Boolean, ctx:Context) {
 
         val nextModeIsSnooze=nextModeIsSnooze()
         if(nextModeIsSnooze) usedSnoozes++
@@ -39,9 +41,38 @@ object Scheduler {
                 PendingIntent
                     .getBroadcast(ctx, 0, intent, 0)
         AlarmHelper.scheduleAlarm(ctx, delay, pendingIntent)
+        onScheduledListener.onScheduled(delay)
+
+    }*/
+
+    fun schedule(snoozeMode:Boolean, ctx:Context){
+        var delayMins:Int=0
+        if(snoozeMode){
+            if(usedSnoozes< maxSnoozeNumber){
+                delayMins= snoozeTimeMins
+                usedSnoozes++
+            }
+            else{
+                delayMins= min(waitTillNextAlarmFromLastSnoozeMins.toLong(), remainingTimeForTodayMin()).toInt()
+            }
+        }
+        else{
+            if(canDrinkToday() && Person.hasToDrinkToday()){
+                delayMins= scheduledHydrationPeriodMins()
+            }
+            else{
+                delayMins= (SecsTillTomorrowFirstAlarm()/60).toInt()
+            }
+        }
+        val intent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
+        val pendingIntent=
+                PendingIntent
+                        .getBroadcast(ctx, 0, intent, 0)
+        AlarmHelper.scheduleAlarm(ctx, delayMins, pendingIntent)
+        onScheduledListener.onScheduled(delayMins)
     }
 
-    private fun nextModeIsSnooze(): Boolean {
+    /*private fun nextModeIsSnooze(): Boolean {
         return usedSnoozes< maxSnoozeNumber
     }
 
@@ -59,7 +90,7 @@ object Scheduler {
             }
         }
 
-    }
+    }*/
 
     private fun SecsTillTomorrowFirstAlarm(): Long {
         val now=LocalDateTime.now()
@@ -92,25 +123,27 @@ object Scheduler {
 
     fun reset(ctx: Context) {
         usedSnoozes=0
-        val snoozeIntent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
+        /*val snoozeIntent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
         snoozeIntent.putExtra(snoozeModeName, true)
         var pendingIntent=
                 PendingIntent
                         .getBroadcast(ctx, 0, snoozeIntent, 0)
-        AlarmHelper.cancelAlarm(pendingIntent, ctx)
+        AlarmHelper.cancelAlarm(pendingIntent, ctx)*/
 
         val normalIntent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
-        normalIntent.putExtra(snoozeModeName, false)
-        pendingIntent=
+        //normalIntent.putExtra(snoozeModeName, false)
+        var pendingIntent=
                 PendingIntent
                         .getBroadcast(ctx, 0, normalIntent, 0)
         AlarmHelper.cancelAlarm(pendingIntent, ctx)
+
+
     }
 
-    fun scheduledHydrationMl(): Long {
+    fun scheduledHydrationPeriodMins(): Int {
         val numberOfDrinksToday=Person.yetToDrinkTodayMl()/ defaultHydrationPerCaseMl
-        val numOfPeriods=numberOfDrinksToday-1
-        return remainingTimeForTodayMin()/numOfPeriods
+        val numOfPeriods=numberOfDrinksToday
+        return (remainingTimeForTodayMin()/numOfPeriods).toInt()
     }
 
     private fun remainingTimeForTodayMin(): Long {
@@ -118,4 +151,8 @@ object Scheduler {
         return ChronoUnit.MINUTES.between(now, latestAlarmToday())
 
     }
+}
+
+interface OnScheduledListener {
+    fun onScheduled(secsTillNextAlarm: Int):Unit
 }

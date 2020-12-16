@@ -6,7 +6,7 @@ import android.content.Context
 
 class AlarmHelper {
     companion object {
-        fun scheduleAlarm(ctx: Context, delaySeconds : Long, pendingIntent: PendingIntent) {
+        fun scheduleAlarm(ctx: Context, delaySeconds: Int, pendingIntent: PendingIntent) {
             val triggerDateTime = System.currentTimeMillis() + delaySeconds * 1000
             val alarmManager =
                 ctx.getSystemService(Context.ALARM_SERVICE) as? AlarmManager

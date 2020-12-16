@@ -8,8 +8,8 @@ import hu.bme.aut.android.drinktime.scheduler.Scheduler
 
 class DrinkAlarmBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
-        val snoozeMode=intent?.getBooleanExtra(Scheduler.snoozeModeName, true) ?: true
-        Scheduler.schedule(snoozeMode, context) //repeat if not reagated
+        //val snoozeMode=intent?.getBooleanExtra(Scheduler.snoozeModeName, true) ?: true
+        Scheduler.schedule(snoozeMode = true, context) //repeat if not reagated
         NotificationHelper.createDrinkTimeNotification(context)
 
     }
