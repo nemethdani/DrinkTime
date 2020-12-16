@@ -17,11 +17,7 @@
         android:label="Schedule"
         tools:layout="@layout/fragment_schedule" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="hu.bme.aut.android.drinktime.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+
 
     <fragment
         android:id="@+id/pref_personal_profile"
