@@ -50,7 +50,7 @@ object Person {
     fun hydrate(hydration: Int, ctx:Context) {
         accumulatedHydration+=hydration
         lastHydrationTime= LocalDateTime.now()
-        Scheduler.reset()
+        Scheduler.reset(ctx)
         Scheduler.schedule(false,ctx)
     }
 
@@ -61,6 +61,10 @@ object Person {
     //ml water
     private fun requiredHydration(): Int {
             return 2000
+    }
+
+    fun yetToDrinkTodayMl(): Int {
+        return requiredHydration()- accumulatedHydration
     }
 
 

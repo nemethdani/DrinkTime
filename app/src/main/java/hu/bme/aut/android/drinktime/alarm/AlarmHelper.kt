@@ -12,5 +12,11 @@ class AlarmHelper {
                 ctx.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
             alarmManager?.set(AlarmManager.RTC_WAKEUP, triggerDateTime, pendingIntent)
         }
+
+        fun cancelAlarm(pendingIntent: PendingIntent, ctx:Context){
+            val alarmManager =
+                    ctx.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+            alarmManager?.cancel(pendingIntent)
+        }
     }
 }

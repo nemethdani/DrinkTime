@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit
 
 object Scheduler {
 
-
+    var defaultHydrationPerCaseMl:Int=200
     var snoozeTimeMins:Int =5
     var maxSnoozeNumber:Int=2
     var waitTillNextAlarmFromLastSnoozeMins:Int=30
@@ -74,18 +74,48 @@ object Scheduler {
 
     private fun canDrinkToday(): Boolean {
         val now=LocalTime.now()
-        val today=LocalDate.now()
-        val weekend = isWeekend(today)
-        if(weekend){
-            return now.isBefore(weekendLatestAlarm)
+
+        return now.isBefore(latestAlarmToday())
+    }
+
+    private fun latestAlarmToday():LocalTime{
+        return if(isWeekend(LocalDate.now())){
+            weekendLatestAlarm
         }
-        else{
-            return now.isBefore(workdayLatestAlarm)
-        }
+        else workdayLatestAlarm
     }
 
     private fun isWeekend(day: LocalDate): Boolean {
         val weekend = (day.dayOfWeek == DayOfWeek.SATURDAY || day.dayOfWeek == DayOfWeek.SUNDAY)
         return weekend
+    }
+
+    fun reset(ctx: Context) {
+        usedSnoozes=0
+        val snoozeIntent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
+        snoozeIntent.putExtra(snoozeModeName, true)
+        var pendingIntent=
+                PendingIntent
+                        .getBroadcast(ctx, 0, snoozeIntent, 0)
+        AlarmHelper.cancelAlarm(pendingIntent, ctx)
+
+        val normalIntent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
+        normalIntent.putExtra(snoozeModeName, false)
+        pendingIntent=
+                PendingIntent
+                        .getBroadcast(ctx, 0, normalIntent, 0)
+        AlarmHelper.cancelAlarm(pendingIntent, ctx)
+    }
+
+    fun scheduledHydrationMl(): Long {
+        val numberOfDrinksToday=Person.yetToDrinkTodayMl()/ defaultHydrationPerCaseMl
+        val numOfPeriods=numberOfDrinksToday-1
+        return remainingTimeForTodayMin()/numOfPeriods
+    }
+
+    private fun remainingTimeForTodayMin(): Long {
+        val now=LocalTime.now()
+        return ChronoUnit.MINUTES.between(now, latestAlarmToday())
+
     }
 }
