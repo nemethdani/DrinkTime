@@ -15,10 +15,10 @@
         app:layout_constraintBottom_toTopOf="@+id/tvPlannedDrink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.849"
+        app:layout_constraintTop_toBottomOf="@+id/button"
         tools:layout_height="300dp"
         tools:layout_width="300dp"></androidx.viewpager.widget.ViewPager>
 
@@ -26,8 +26,8 @@
         android:id="@+id/tvPlannedDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
         android:text="@string/planned_drink_for_today_1_d_ml_fragment_home"
+
         app:layout_constraintBottom_toTopOf="@+id/tvActualDrink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -36,7 +36,6 @@
         android:id="@+id/tvActualDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:text="@string/actual_drink_today_1_d_ml_fragment_home"
         app:layout_constraintBottom_toTopOf="@+id/tvRemainingDrink"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +45,6 @@
         android:id="@+id/tvRemainingDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
 
         android:text="@string/yet_to_drink_today_1_d_ml_fragment_home"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import android.widget.Toast
+import androidx.core.graphics.drawable.toDrawable
 import hu.bme.aut.android.drinktime.DrinkTimeApplication.Companion.Person
+import hu.bme.aut.android.drinktime.MainActivity
 import hu.bme.aut.android.drinktime.R
 import hu.bme.aut.android.drinktime.model.DrinkType
 
@@ -24,7 +27,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DrinkFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DrinkFragment(val drinkType: DrinkType, private val onDrinkListener: OnDrinkListener) : Fragment() {
+class DrinkFragment(val drinkType: DrinkType, private val onDrinkListener: OnDrinkListener) : Fragment(),
+    SeekBar.OnSeekBarChangeListener{
 
 
 
@@ -52,10 +56,30 @@ class DrinkFragment(val drinkType: DrinkType, private val onDrinkListener: OnDri
         }
         seekBar.milliLiter=drinkType.defaultVolumeMl.toLong()
         tvVolumeToDrink.text=getString(R.string.volume_to_drink_1_d_ml_drink_fragment, seekBar.milliLiter)
+        /*when(drinkType.id){
+            0->ibtnDrink.setImageResource(R.drawable.water)
+            1->ibtnDrink.setImageResource(R.drawable.fruit_juice)
+            2->ibtnDrink.setImageResource(R.drawable.coffee)
+        }*/
+
+
+        seekBar.setOnSeekBarChangeListener(this)
     }
 
     fun setSeekBarMl(milliLiter: Int){
         seekBar.milliLiter= milliLiter.toLong()
+    }
+
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        tvVolumeToDrink.text=getString(R.string.volume_to_drink_1_d_ml_drink_fragment, seekBar?.milliLiter)
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
     }
 
 
