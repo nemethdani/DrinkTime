@@ -29,21 +29,7 @@ object Scheduler {
 
     lateinit var onScheduledListener: OnScheduledListener
 
-    /*fun schedule(snoozeMode:Boolean, ctx:Context) {
 
-        val nextModeIsSnooze=nextModeIsSnooze()
-        if(nextModeIsSnooze) usedSnoozes++
-        else usedSnoozes=0
-        val delay:Long= DelayTillFirstAlarm(snoozeMode,nextModeIsSnooze) //Secs
-        val intent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
-        intent.putExtra(snoozeModeName, nextModeIsSnooze)
-        val pendingIntent=
-                PendingIntent
-                    .getBroadcast(ctx, 0, intent, 0)
-        AlarmHelper.scheduleAlarm(ctx, delay, pendingIntent)
-        onScheduledListener.onScheduled(delay)
-
-    }*/
 
     fun schedule(snoozeMode:Boolean, ctx:Context){
         var delayMins:Int=0
@@ -64,33 +50,18 @@ object Scheduler {
                 delayMins= (SecsTillTomorrowFirstAlarm()/60).toInt()
             }
         }
+        sendDrinkalarm(delayMins*60, ctx)
+    }
+
+
+    fun sendDrinkalarm(delaySecs:Int, ctx:Context){
         val intent=Intent(ctx, DrinkAlarmBroadcastReceiver::class.java)
         val pendingIntent=
                 PendingIntent
                         .getBroadcast(ctx, 0, intent, 0)
-        AlarmHelper.scheduleAlarm(ctx, delayMins, pendingIntent)
-        onScheduledListener.onScheduled(delayMins)
+        AlarmHelper.scheduleAlarm(ctx, delaySecs, pendingIntent)
+        onScheduledListener.onScheduled(delaySecs)
     }
-
-    /*private fun nextModeIsSnooze(): Boolean {
-        return usedSnoozes< maxSnoozeNumber
-    }
-
-    //Secs
-    private fun DelayTillFirstAlarm(currentModeIsSnooze:Boolean, nextModeIsSnooze: Boolean): Long {
-        if(nextModeIsSnooze){
-            return snoozeTimeMins*60.toLong()
-        }
-        else if(currentModeIsSnooze) return waitTillNextAlarmFromLastSnoozeMins*60.toLong()
-        else{
-            return if(Person.hasToDrinkToday() && canDrinkToday()){
-                0;
-            } else{
-                SecsTillTomorrowFirstAlarm()
-            }
-        }
-
-    }*/
 
     private fun SecsTillTomorrowFirstAlarm(): Long {
         val now=LocalDateTime.now()

@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import hu.bme.aut.android.drinktime.R
@@ -51,13 +53,13 @@ class HomeFragment : Fragment(), OnDrinkListener, OnScheduledListener{
 
         if(fromNotification){
             viewPager.currentItem=0 //water
-            val mlToDrink:Long=Scheduler.defaultHydrationPerCaseMl.toLong()
-            viewPager.seekBar.milliLiter=mlToDrink
+            /*val mlToDrink:Long=Scheduler.defaultHydrationPerCaseMl.toLong()
+            viewPager.seekBar.milliLiter=mlToDrink*/
         }
 
         setDrinkData()
 
-
+        button.setOnClickListener { Scheduler.sendDrinkalarm(5, requireContext()) }
 
     }
 
@@ -75,7 +77,7 @@ class HomeFragment : Fragment(), OnDrinkListener, OnScheduledListener{
     }
 
     override fun onScheduled(secsTillNextAlarm: Int) {
-        Snackbar.make(home_constraint_layout, "Mins till next alarm: "+secsTillNextAlarm,
+        Snackbar.make(home_constraint_layout, "Mins till next alarm: "+secsTillNextAlarm/60,
                                     Snackbar.LENGTH_LONG).show()
     }
 }

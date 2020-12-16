@@ -53,6 +53,10 @@ class DrinkFragment(val drinkType: DrinkType, private val onDrinkListener: OnDri
         tvVolumeToDrink.text=getString(R.string.volume_to_drink_1_d_ml_drink_fragment, seekBar.milliLiter)
     }
 
+    fun setSeekBarMl(milliLiter: Int){
+        seekBar.milliLiter= milliLiter.toLong()
+    }
+
 
 }
 
