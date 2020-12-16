@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="Planned drink for today: %1$d ml"
+        android:text="@string/planned_drink_for_today_1_d_ml_fragment_home"
         app:layout_constraintBottom_toTopOf="@+id/tvActualDrink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Actual drink today: %1$d ml"
+        android:text="@string/actual_drink_today_1_d_ml_fragment_home"
         app:layout_constraintBottom_toTopOf="@+id/tvRemainingDrink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
 
-        android:text="Yet to drink today: %1$d ml"
+        android:text="@string/yet_to_drink_today_1_d_ml_fragment_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"

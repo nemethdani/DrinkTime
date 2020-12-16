@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import hu.bme.aut.android.drinktime.R
 import hu.bme.aut.android.drinktime.adapter.DrinkFragmentAdapter
+import hu.bme.aut.android.drinktime.model.Person
 import hu.bme.aut.android.drinktime.notification.NotificationHelper
 import hu.bme.aut.android.drinktime.scheduler.Scheduler
 import kotlinx.android.synthetic.main.fragment_drink.*
@@ -47,11 +49,21 @@ class HomeFragment : Fragment() {
 
         if(fromNotification){
             viewPager.currentItem=0 //water
-            val mlToDrink:Int=Scheduler.scheduledHydrationMl()
-            viewPager.seekBar.milliLiter(mlToDrink)
+            val mlToDrink:Long=Scheduler.scheduledHydrationMl()
+            viewPager.seekBar.milliLiter=mlToDrink
         }
+
+        tvPlannedDrink.text= getString(R.string.planned_drink_for_today_1_d_ml_fragment_home,
+                                                        Person.requiredHydration())
+        tvActualDrink.text=getString(R.string.actual_drink_today_1_d_ml_fragment_home,
+                                                        Person.accumulatedHydration)
+        tvRemainingDrink.text=getString(R.string.yet_to_drink_today_1_d_ml_fragment_home,
+                                                        Person.yetToDrinkTodayMl())
+
 
 
 
     }
 }
+
+

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.DrinkFragment">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
 
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
             android:id="@+id/tvHydration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hydration: %1$d%" />
+            android:text="@string/hydration_1_d_drink_fragment" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="100dp"
@@ -35,10 +35,10 @@
         </androidx.appcompat.widget.AppCompatImageButton>
 
         <TextView
-
+            android:id="@+id/tvVolumeToDrink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volume to drink: %1$d ml" />
+            android:text="@string/volume_to_drink_1_d_ml_drink_fragment" />
 
         <SeekBar
             android:id="@+id/seekBar"
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="80"
-            android:progress="5" />
+            android:progress="30" />
     </LinearLayout>
 
 </FrameLayout>

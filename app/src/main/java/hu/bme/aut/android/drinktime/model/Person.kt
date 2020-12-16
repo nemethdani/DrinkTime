@@ -59,7 +59,7 @@ object Person {
     }
 
     //ml water
-    private fun requiredHydration(): Int {
+    fun requiredHydration(): Int {
             return 2000
     }
 
