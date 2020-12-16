@@ -34,7 +34,7 @@
     <string name="snooze_time_mins_fragment_schedule">Snooze time (mins)</string>
     <string name="max_number_of_snoozes_fragment_schedule">Max number of snoozes</string>
     <string name="wait_time_after_last_snooze_till_next_alarm_fragment_schedule">Wait time after last snooze till next alarm</string>
-    <string name="hydration_1_d_drink_fragment">Hydration: %1$d\%</string>
+    <string name="hydration_1_d_drink_fragment">Hydration: %1$d percent</string>
     <string name="volume_to_drink_1_d_ml_drink_fragment">Volume to drink: %1$d ml</string>
     <string name="planned_drink_for_today_1_d_ml_fragment_home">Planned drink for today: %1$d ml</string>
     <string name="actual_drink_today_1_d_ml_fragment_home">Actual drink today: %1$d ml</string>

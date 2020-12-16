@@ -23,8 +23,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DrinkFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DrinkFragment(val drinkType: DrinkType) : Fragment() {
-    // TODO: Rename and change types of parameters
+class DrinkFragment(val drinkType: DrinkType, private val onDrinkListener: OnDrinkListener) : Fragment() {
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +45,19 @@ class DrinkFragment(val drinkType: DrinkType) : Fragment() {
 
         tvDrinkName.text=drinkType.name
         tvHydration.text=getString(R.string.hydration_1_d_drink_fragment, drinkType.hydration)
-        ibtnDrink.setOnClickListener { Person.hydrate(seekBar.milliLiter.toInt(), requireContext()) }
+        ibtnDrink.setOnClickListener {
+            drinkType.drink(Person, seekBar.milliLiter.toInt(), requireContext())
+            onDrinkListener.onDrink()
+        }
         seekBar.milliLiter=drinkType.defaultVolumeMl.toLong()
         tvVolumeToDrink.text=getString(R.string.volume_to_drink_1_d_ml_drink_fragment, seekBar.milliLiter)
     }
 
 
+}
+
+interface OnDrinkListener {
+    fun onDrink():Unit
 }
 
 var SeekBar.milliLiter: Long

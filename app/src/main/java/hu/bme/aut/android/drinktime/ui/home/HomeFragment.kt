@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_drink.*
 import kotlinx.android.synthetic.main.fragment_drink.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnDrinkListener{
 
     companion object{
         val FROM_NOTIFICATION="FROM_NOTIFICATION"
@@ -42,10 +42,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewPager.adapter=DrinkFragmentAdapter(childFragmentManager)
+        viewPager.adapter=DrinkFragmentAdapter(childFragmentManager, this)
+
+
         NotificationHelper.createNotificationChannels(this.requireContext())
 
-        fromNotification= arguments?.get(FROM_NOTIFICATION) as Boolean
+        var fromNotification= false
+        if (arguments?.getBoolean(FROM_NOTIFICATION) == true) fromNotification=true
+
+
 
         if(fromNotification){
             viewPager.currentItem=0 //water
@@ -53,16 +58,23 @@ class HomeFragment : Fragment() {
             viewPager.seekBar.milliLiter=mlToDrink
         }
 
-        tvPlannedDrink.text= getString(R.string.planned_drink_for_today_1_d_ml_fragment_home,
-                                                        Person.requiredHydration())
-        tvActualDrink.text=getString(R.string.actual_drink_today_1_d_ml_fragment_home,
-                                                        Person.accumulatedHydration)
-        tvRemainingDrink.text=getString(R.string.yet_to_drink_today_1_d_ml_fragment_home,
-                                                        Person.yetToDrinkTodayMl())
+        setDrinkData()
 
 
 
+    }
 
+    private fun setDrinkData() {
+        tvPlannedDrink.text = getString(R.string.planned_drink_for_today_1_d_ml_fragment_home,
+                Person.requiredHydration())
+        tvActualDrink.text = getString(R.string.actual_drink_today_1_d_ml_fragment_home,
+                Person.accumulatedHydration)
+        tvRemainingDrink.text = getString(R.string.yet_to_drink_today_1_d_ml_fragment_home,
+                Person.yetToDrinkTodayMl())
+    }
+
+    override fun onDrink() {
+        setDrinkData()
     }
 }
 
