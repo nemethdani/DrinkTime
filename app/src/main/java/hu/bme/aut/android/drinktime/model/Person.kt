@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import hu.bme.aut.android.drinktime.ui.settings.PersonalProfileSettingsFragment
 import android.content.SharedPreferences
+import hu.bme.aut.android.drinktime.DrinkTimeApplication.Companion.Scheduler
 import hu.bme.aut.android.drinktime.MainActivity
-import hu.bme.aut.android.drinktime.scheduler.Scheduler
+
 import java.time.LocalDateTime
 
-object Person {
+class Person {
 
 
     var name:String=""
@@ -17,7 +18,7 @@ object Person {
     var sex:Sex= Sex.female
     var sportIntensity= SportIntensity.sitting
 
-    var lastHydrationTime=LocalDateTime.MIN
+    //var lastHydrationTime=LocalDateTime.MIN
     //ml water
     var accumulatedHydration :Int =0
 
@@ -33,10 +34,10 @@ object Person {
                 ?: 0
         val sex=preferences.getBoolean("sex_preference", false)
         if(sex){
-            Person.sex=Sex.female
+            this.sex=Sex.female
         }
         else{
-            Person.sex=Sex.male
+            this.sex=Sex.male
         }
         val intensity=preferences.getString("sport_list_preference", "Sitting work")
         sportIntensity=when(intensity){
@@ -49,7 +50,7 @@ object Person {
 
     fun hydrate(hydration: Int, ctx:Context) {
         accumulatedHydration+=hydration
-        lastHydrationTime= LocalDateTime.now()
+        //lastHydrationTime= LocalDateTime.now()
         Scheduler.reset(ctx)
         Scheduler.schedule(false,ctx)
     }

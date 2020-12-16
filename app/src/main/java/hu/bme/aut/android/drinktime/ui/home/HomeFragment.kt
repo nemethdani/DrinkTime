@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import hu.bme.aut.android.drinktime.DrinkTimeApplication.Companion.Person
+import hu.bme.aut.android.drinktime.DrinkTimeApplication.Companion.Scheduler
 import hu.bme.aut.android.drinktime.R
 import hu.bme.aut.android.drinktime.adapter.DrinkFragmentAdapter
-import hu.bme.aut.android.drinktime.model.Person
+
 import hu.bme.aut.android.drinktime.notification.NotificationHelper
 import hu.bme.aut.android.drinktime.scheduler.OnScheduledListener
-import hu.bme.aut.android.drinktime.scheduler.Scheduler
+
 import kotlinx.android.synthetic.main.fragment_drink.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 

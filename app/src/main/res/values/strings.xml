@@ -39,4 +39,5 @@
     <string name="planned_drink_for_today_1_d_ml_fragment_home">Planned drink for today: %1$d ml</string>
     <string name="actual_drink_today_1_d_ml_fragment_home">Actual drink today: %1$d ml</string>
     <string name="yet_to_drink_today_1_d_ml_fragment_home">Yet to drink today: %1$d ml</string>
+    <string name="default_water_amount_schedule_fragment">Default water amount (ml)</string>
 </resources>

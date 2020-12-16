@@ -17,6 +17,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="@string/default_water_amount_schedule_fragment" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etDefaultWaterAmount"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="@string/snooze_time_mins_fragment_schedule" />
 
             <EditText

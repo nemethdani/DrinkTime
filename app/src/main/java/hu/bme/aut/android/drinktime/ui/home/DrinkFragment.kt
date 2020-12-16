@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import hu.bme.aut.android.drinktime.DrinkTimeApplication.Companion.Person
 import hu.bme.aut.android.drinktime.R
 import hu.bme.aut.android.drinktime.model.DrinkType
-import hu.bme.aut.android.drinktime.model.Person
+
 import kotlinx.android.synthetic.main.fragment_drink.*
 
 

@@ -4,8 +4,9 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import hu.bme.aut.android.drinktime.DrinkTimeApplication.Companion.Person
 import hu.bme.aut.android.drinktime.R
-import hu.bme.aut.android.drinktime.model.Person
+
 
 class PersonalProfileSettingsFragment : PreferenceFragmentCompat(),
                                         SharedPreferences.OnSharedPreferenceChangeListener {

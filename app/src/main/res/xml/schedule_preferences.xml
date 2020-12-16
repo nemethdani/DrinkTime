@@ -1,0 +1,84 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        app:key="defaultWaterMl"
+        app:defaultValue="200"
+        app:title="Default volume of water to drink in ml"></EditTextPreference>
+
+    <EditTextPreference
+        app:key="snoozeTimeMin"
+        app:defaultValue="5"
+        app:title="Default snooze time"/>
+
+    <EditTextPreference
+        app:key="MaxNumOfSnoozes"
+        app:defaultValue="2"
+        app:title="Maximum number of snoozes"/>
+
+    <EditTextPreference
+        app:key="waitTimeMin"
+        app:defaultValue="40"
+        app:title="Wait time after last snooze"/>
+
+    <hu.bme.aut.android.drinktime.util.TimepickerPreference
+        app:key="workday_earliest_time"
+        app:title="Earliest notification time on workday"
+        app:summary="This will programmatically show current notification time."
+        app:defaultValue="70" />
+
+    <hu.bme.aut.android.drinktime.util.TimepickerPreference
+        app:key="workday_latest_time"
+        app:title="Latest notification time on workday"
+        app:summary="This will programmatically show current notification time."
+        app:defaultValue="190" />
+
+    <hu.bme.aut.android.drinktime.util.TimepickerPreference
+        app:key="weekend_earliest_time"
+        app:title="Earliest notification time on weekend"
+        app:summary="This will programmatically show current notification time."
+        app:defaultValue="90" />
+
+    <hu.bme.aut.android.drinktime.util.TimepickerPreference
+        app:key="weekend_latest_time"
+        app:title="Latest notification time on weekend"
+        app:summary="This will programmatically show current notification time."
+        app:defaultValue="190" />
+
+
+
+
+
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="@string/signature_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="@string/reply_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sync_header">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="@string/sync_title" />
+
+        <SwitchPreferenceCompat
+            app:dependency="sync"
+            app:key="attachment"
+            app:summaryOff="@string/attachment_summary_off"
+            app:summaryOn="@string/attachment_summary_on"
+            app:title="@string/attachment_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_schedule"
-        android:name="hu.bme.aut.android.drinktime.ui.scehdule.ScheduleFragment"
+        android:name="hu.bme.aut.android.drinktime.ui.scehdule.ScheduleSettingsFragment"
         android:label="Schedule"
         tools:layout="@layout/fragment_schedule" />
 

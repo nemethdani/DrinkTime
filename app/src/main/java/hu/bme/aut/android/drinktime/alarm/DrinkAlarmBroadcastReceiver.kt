@@ -3,8 +3,9 @@ package hu.bme.aut.android.drinktime.alarm
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import hu.bme.aut.android.drinktime.DrinkTimeApplication.Companion.Scheduler
 import hu.bme.aut.android.drinktime.notification.NotificationHelper
-import hu.bme.aut.android.drinktime.scheduler.Scheduler
+
 
 class DrinkAlarmBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
